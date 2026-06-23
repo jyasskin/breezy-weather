@@ -65,6 +65,11 @@ private fun buildWeatherWidget(
     context: Context,
     location: Location?,
 ): RemoteViews = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    val oneRow = 94f
+    val twoRow = 196f
+    val threeRow = 297f
+    val fourCol = 256f
+    val fiveCol = 298f
     RemoteViews(
         mapOf(
             SizeF(1.0f, 1.0f) to buildRemoteViews(
@@ -72,47 +77,47 @@ private fun buildWeatherWidget(
                 location,
                 R.layout.widget_material_you_forecast_1x1
             ),
-            SizeF(120.0f, 120.0f) to buildRemoteViews(
+            SizeF(120.0f, oneRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_2x1
             ),
-            SizeF(156.0f, 156.0f) to buildRemoteViews(
+            SizeF(140.0f, 156.0f) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_2x2
             ),
-            SizeF(192.0f, 98.0f) to buildRemoteViews(
+            SizeF(192.0f, oneRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_3x1
             ),
-            SizeF(148.0f, 198.0f) to buildRemoteViews(
+            SizeF(148.0f, twoRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_3x2
             ),
-            SizeF(256.0f, 100.0f) to buildRemoteViews(
+            SizeF(fourCol, oneRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_4x1
             ),
-            SizeF(256.0f, 198.0f) to buildRemoteViews(
+            SizeF(fourCol, twoRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_4x2
             ),
-            SizeF(256.0f, 312.0f) to buildRemoteViews(
+            SizeF(fourCol, threeRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_4x3
             ),
-            SizeF(298.0f, 198.0f) to buildRemoteViews(
+            SizeF(fiveCol, twoRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_5x2
             ),
-            SizeF(298.0f, 312.0f) to buildRemoteViews(
+            SizeF(fiveCol, threeRow) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_5x3
