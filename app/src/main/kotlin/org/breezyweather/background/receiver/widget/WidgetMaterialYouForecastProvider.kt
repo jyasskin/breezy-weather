@@ -19,6 +19,9 @@ package org.breezyweather.background.receiver.widget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
+import android.util.SizeF
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +40,26 @@ class WidgetMaterialYouForecastProvider : AppWidgetProvider() {
 
     @Inject
     lateinit var weatherRepository: WeatherRepository
+
+    override fun onAppWidgetOptionsChanged(
+        context: Context?,
+        appWidgetManager: AppWidgetManager?,
+        appWidgetId: Int,
+        newOptions: Bundle?,
+    ) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+        val minwidth_dp: Int? = newOptions?.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH)
+        val maxwidth_dp: Int? = newOptions?.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH)
+        val minheight_dp: Int? = newOptions?.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT)
+        val maxheight_dp: Int? = newOptions?.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT)
+        @Suppress("DEPRECATION") val sizes = newOptions?.getParcelableArrayList<SizeF>(
+            AppWidgetManager.OPTION_APPWIDGET_SIZES
+        )
+        Log.d(WidgetMaterialYouForecastProvider::class.java.simpleName,
+            "Options changed: minwidth=${minwidth_dp}dp, maxwidth=${maxwidth_dp}dp, minheight=${minheight_dp}dp, maxheight=${maxheight_dp}dp.");
+        Log.d(WidgetMaterialYouForecastProvider::class.java.simpleName,
+            sizes?.map { "${it.width}x${it.height}dp" }?.joinToString(", ", "Possible sizes: ")?:"null");
+    }
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onUpdate(
